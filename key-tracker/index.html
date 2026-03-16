@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Учёт ключей — Киевстар</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">Учёт ключей</h1>
+      <p class="tagline">Киевстар — ключи от оборудования</p>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <!-- Поиск по зоні або ТКД -->
+      <section class="search-section">
+        <label for="key-search" class="search-label">Поиск по зоне или связке</label>
+        <div class="search-row">
+          <input type="text" id="key-search" class="search-input" placeholder="Например: Зона 10 или 101-106" autocomplete="off" />
+          <button type="button" class="btn btn-add" id="btn-search">Найти</button>
+        </div>
+        <div id="search-results" class="search-results" style="display: none;"></div>
+      </section>
+
+      <!-- Действия: взять / вернуть связку -->
+      <section class="actions-section card">
+        <h2 class="section-title">Список связок ключей</h2>
+
+        <div class="action-grid">
+          <!-- Левая колонка: выбор зоны / ПІБ / кнопка -->
+          <div class="action-panel action-panel--left">
+            <div class="field">
+              <label for="zone-select">Зона</label>
+              <select id="zone-select"></select>
+            </div>
+            <div class="field">
+              <label for="quick-bundle-select">Быстрый выбор связки</label>
+              <div class="inline-row">
+                <input type="text" id="quick-bundle-select" placeholder="Зона_Связка, напр. 1_101-1010" />
+                <button type="button" class="btn btn-add" id="btn-quick-select">Выбрать</button>
+              </div>
+            </div>
+            <div class="field">
+              <label for="person-name">ФИО</label>
+              <input type="text" id="person-name" placeholder="Фамилия Имя" />
+            </div>
+
+            <div class="action-row action-row--buttons">
+              <div class="buttons">
+                <button type="button" class="btn btn-take" id="btn-take">Взять</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Правая колонка: список связок -->
+          <div class="action-panel action-panel--right">
+            <div class="field">
+              <label for="bundle-list">Связка</label>
+              <input type="text" id="bundle-search" class="search-input" placeholder="Поиск связки" autocomplete="off" />
+              <div id="bundle-list" class="bundle-list" role="listbox" aria-multiselectable="true"></div>
+              <!-- <p class="hint" style="margin-top:0.4rem;">Клик — выбрать/снять; Ctrl/Cmd + клики для мультивыбора.</p> -->
+              <button type="button" class="btn btn-add" id="btn-select-all">Выбрать все в зоне</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Выбранные связки -->
+        <div class="selected-bundles" id="selected-bundles">
+          <div class="selected-bundles__title">Выбранные связки:</div>
+          <div class="selected-bundles__list"></div>
+        </div>
+      </section>
+
+      <!-- Блок с людьми, у которых есть ключи -->
+      <section class="people-section card" id="people-section">
+        <h2 class="section-title">У кого сейчас ключи</h2>
+        <p class="hint">Нажмите на имя, чтобы посмотреть ключи этого человека.</p>
+        <div class="people-list" id="people-list"></div>
+        
+        <!-- Панель просмотра ключей -->
+        <div class="view-panel card" id="view-panel" style="display: none;">
+          <div class="card-header">
+            <h3 id="view-person-name"></h3>
+          </div>
+          <div class="card-body">
+            <div id="view-keys-info" class="view-keys-info"></div>
+            <div class="view-bundles" id="view-bundles"></div>
+            <div class="view-buttons" id="view-buttons"></div>
+          </div>
+        </div>
+        
+
+      </section>
+
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
